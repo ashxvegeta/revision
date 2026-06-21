@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(
             \App\Contracts\PaymentGatewayInterface::class,
-            \App\Services\StripeService::class
+            \App\Services\RazorpayService::class
         );
     }
 
