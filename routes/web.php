@@ -7,5 +7,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+// same route bhi use hoga
 Route::get('/pay',[PaymentController::class,'charge']);
