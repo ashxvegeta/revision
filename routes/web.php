@@ -8,4 +8,5 @@ Route::get('/', function () {
 });
 
 // same route bhi use hoga
-Route::get('/pay',[PaymentController::class,'charge']);
+Route::get('/pay', [PaymentController::class, 'charge'])
+    ->middleware(\App\Http\Middleware\LogRequest::class);

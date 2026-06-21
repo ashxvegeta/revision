@@ -12,7 +12,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         
-        $middleware->append(\App\Http\Middleware\LogRequest::class);
+        // $middleware->append(\App\Http\Middleware\LogRequest::class);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

@@ -15,17 +15,9 @@ class LogRequest
      */
     public function handle(Request $request, Closure $next): Response
     {
-
-         //before middleware
-        // if (app()->environment('local')) {
-        // \Log::info('Request Recived'.$request->url());
-        // }
-        // return $next($request);
-
-
-        // after middleware
-        $response = $next($request);
-        \Log::info('Response ja raha hai: ' . $response->getStatusCode());
-        return $response;
+        if (app()->environment('local')) {
+        \Log::info(' Route middleware '.$request->url());
+        }
+        return $next($request);
     }
 }
