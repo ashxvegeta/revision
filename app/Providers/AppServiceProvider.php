@@ -11,12 +11,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        //yahan se line cut karke sidha paymentService Provider mai rakh diya hai
 
-        $this->app->bind(
-            \App\Contracts\PaymentGatewayInterface::class,
-            \App\Services\RazorpayService::class
-        );
+        
     }
 
     /**
