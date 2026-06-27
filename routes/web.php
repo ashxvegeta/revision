@@ -1,21 +1,21 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PaymentController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-// same route bhi use hoga
-Route::get('/pay', [PaymentController::class, 'charge'])
-    ->middleware(\App\Http\Middleware\LogRequest::class);
+Route::get('/dashboard', function () {
+    \Log::info('Logged in user',['user'=>Auth::user()]);
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-
-Route::get('/facade-test',function(){
-       $user  = Auth::user();
-       \Log::info('Auth Facade test',['user'=>Auth::user()]);
-      \Log::info('App environment', ['env' => App::environment()]);
-       \Log::info('Request methods',['methods'=>Request::method()]);
-       return response()->json(['message'=>'Facades kaam kiya']);
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+require __DIR__.'/auth.php';
