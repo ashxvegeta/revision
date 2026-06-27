@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Gate;
 Route::get('/', function () {
@@ -27,5 +28,7 @@ Route::get('/admin',function(){
     }
 return response()->json(['message'=>'Welcome Admin!']);
 });
+
+Route::get('/post/{post}/edit',[PostController::class,'edit'])->middleware('auth');
 
 require __DIR__.'/auth.php';
